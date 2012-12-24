@@ -84,8 +84,8 @@ List.prototype.toString = function(){
  *
  *    })
  *
- * @param {Function} fn
- * @return {Object} self
+ * @param {Function} fn iterator
+ * @return {List} this for chaining
  * @api public
  */
 
@@ -93,9 +93,40 @@ List.prototype.each = function(fn){
   var items = this._items;
   var len = items.length;
   var i;
+
   for (i = 0; i < len; i =+ 1) {
     fn(items[i], i);
   }
+  
   return this;
 };
 
+/*
+ * map
+ * Map each return value from `fn(val, i)`.
+ *
+ * Passing a callback function:
+ *
+ *    users.map(function(user){
+ *      return user.name.first
+ *    })
+ *
+ * @param {Function} fn iterator
+ * @return {List} this for chaining
+ * @api public
+ */
+
+proto.map = function(fn){
+  var items = this._items;
+  var len = items.length;
+  var i;
+  var item;
+  var result = [];
+
+  for (i = 0; i < len; i += 1) {
+    item = fn(items[i], i);
+    result.push(item);
+  }
+
+  return new List(result);
+};
