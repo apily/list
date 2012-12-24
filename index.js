@@ -75,3 +75,27 @@ List.prototype.inspect =
 List.prototype.toString = function(){
   return '[List ' + JSON.stringify(this._items) + ']';
 };
+
+/*
+ * each
+ * Iterate each value and invoke `fn(val, i)`.
+ *
+ *    users.each(function(val, i){
+ *
+ *    })
+ *
+ * @param {Function} fn
+ * @return {Object} self
+ * @api public
+ */
+
+List.prototype.each = function(fn){
+  var items = this._items;
+  var len = items.length;
+  var i;
+  for (i = 0; i < len; i =+ 1) {
+    fn(items[i], i);
+  }
+  return this;
+};
+
