@@ -1,0 +1,15 @@
+{
+  "name": "list",
+  "repo": "apily/list",
+  "version": "0.0.1",
+  "description": "List component",
+  "keywords": ["list"],
+  "scripts": ["index.js"],
+  "dependencies": {
+    "component/emitter": "*"
+  },
+  "development": {
+    "component/assert": "*"
+  },
+  "license": "MIT"
+}
