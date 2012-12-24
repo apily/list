@@ -112,21 +112,59 @@ List.prototype.each = function(fn){
  *    })
  *
  * @param {Function} fn iterator
- * @return {List} this for chaining
+ * @return {List} the mapped list
  * @api public
  */
 
-proto.map = function(fn){
+List.prototype.map = function(fn){
   var items = this._items;
   var len = items.length;
   var i;
   var item;
+  var mapped;
   var result = [];
 
   for (i = 0; i < len; i += 1) {
-    item = fn(items[i], i);
-    result.push(item);
+    item = items[i];
+    mapped = fn(item, i);
+    result.push(mapped);
   }
 
   return new List(result);
 };
+
+/*
+ * select
+ * Select all values that return a truthy value of `fn(val, i)`.
+ *
+ *    users.select(function(user){
+ *      return user.age > 20
+ *    })
+ *
+ * @param {Function} fn iterator
+ * @return {List} the list of selected items
+ * @api public
+ */
+
+List.prototype.select = 
+List.prototype.where = function(fn){
+  var items = this._items;
+  var len = items.length;
+  var i;
+  var item;
+  var test;
+  var result = [];
+
+  for (var i = 0; i < len; ++i) {
+    item = items[i];
+    test = fn(item, i);
+    if (test) {
+      result.push(item);
+    }
+  }
+
+  return new List(result);
+};
+
+
+
