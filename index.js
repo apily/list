@@ -7,30 +7,55 @@
  */ 
 
 /*
- * Expose `List`
- */
-
-module.exports = List;
-
-/*
- * Module dependencies
+ * Module dependencies.
  */
 
 var Emitter = require('emitter');
 
 /*
- * List
- * Create a list.
+ * Expose `List`.
+ */
+
+module.exports = List;
+
+/*
+ * Mixin emitter.
+ */
+
+Emitter(List.prototype);
+
+/*
+ * Initialize a new `Attribute`.
  *
- * @param {Object} attrs attributes
- * @return {Model} a model
+ * @api public
  */
 
 function List(items) {
   if (!(this instanceof List)) {
-    return new List(items);
+    if (Array.isArray(items)) {
+      return new Enumerable(list);
+    }
+    return mixin(items);
   }
 
-  Emitter.call(this);
   this._items = items;
+}
+
+/*
+ * Mixin the Attribute properties.
+ *
+ * @param {Object} obj
+ * @return {Object}
+ * @api private
+ */
+
+function mixin(obj) {
+  var proto = Attribute.prototype;
+  var key;
+
+  for (key in proto) {
+    obj[key] = proto[key];
+  }
+
+  return obj;
 }
