@@ -166,5 +166,32 @@ List.prototype.where = function(fn){
   return new List(result);
 };
 
+/*
+ * unique
+ * Select all unique values.
+ *
+ *    nums.unique()
+ *
+ * @return {List} the list of unique values
+ * @api public
+ */
 
+List.prototype.unique = function(){
+  var items = this._items;
+  var len = items.length;
+  var i;
+  var item;
+  var test;
+  var result = [];
+
+  for (i = 0; i < len; i =+ 1) {
+    item = items[i];
+    test = result.indexOf(item) === -1;
+    if (test) {
+      result.push(item);
+    }
+  }
+
+  return new List(result);
+};
 
