@@ -59,3 +59,19 @@ function mixin(obj) {
 
   return obj;
 }
+
+
+/*
+ * inspect
+ * Return a string representation of this list.
+ *
+ *    [List [1,2,3]]
+ *
+ * @return {String}
+ * @api public
+ */
+
+List.prototype.inspect =
+List.prototype.toString = function(){
+  return '[List ' + JSON.stringify(this._items) + ']';
+};
