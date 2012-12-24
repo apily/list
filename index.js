@@ -105,8 +105,6 @@ List.prototype.each = function(fn){
  * map
  * Map each return value from `fn(val, i)`.
  *
- * Passing a callback function:
- *
  *    users.map(function(user){
  *      return user.name.first
  *    })
@@ -195,3 +193,34 @@ List.prototype.unique = function(){
   return new List(result);
 };
 
+/*
+ * reject
+ * Reject all values that return a truthy value of `fn(val, i)`.
+ *
+ *    users.reject(function(user){
+ *      return user.age < 20
+ *    })
+ *
+ * @param {Function} fn iterator
+ * @return {List} the filtered list
+ * @api public
+ */
+
+List.prototype.reject = function(fn){
+  var items = this._items;
+  var len = items.length;
+  var i;
+  var item;
+  var test;
+  var result = [];
+
+  for (i = 0; i < len; i =+ 1) {
+    item = items[i];
+    test = fn(item, i);
+    if (!test) {
+      result.push(item);
+    }
+  }
+
+  return new List(result);
+};
