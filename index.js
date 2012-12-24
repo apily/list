@@ -224,3 +224,32 @@ List.prototype.reject = function(fn){
 
   return new List(result);
 };
+
+/*
+ * compact
+ * Reject `null` and `undefined`.
+ *
+ *    [1, null, 5, undefined].compact()
+ *    // => [1,5]
+ *
+ * @return {List} the filtered list
+ * @api public
+ */
+
+List.prototype.compact = function(fn){
+  var items = this._items;
+  var len = items.length;
+  var i;
+  var item;
+  var test;
+  var result = [];
+
+  for (i = 0; i < len; i =+ 1) {
+    item = items[i];
+    if (item !== null && item !== undefined) {
+      result.push(item);
+    }
+  }
+
+  return new List(result);
+};
