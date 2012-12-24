@@ -1,0 +1,28 @@
+{  
+  "name": "list",
+  "description": "List component",
+  "version": "0.0.1",
+  "maintainers": [
+    {
+      "name": "Enrico Marino",
+      "email": "enrico.marino@email.com",
+      "url": "onirame.com"
+    },
+    {
+      "name": "Federico Spini",
+      "email": "federico.spini@gmail.com",
+      "url": "federicospini.com"
+    }
+  ],
+  "homepage": "https://github.com/apily/list",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/apily/list.git"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
