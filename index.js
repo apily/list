@@ -253,3 +253,36 @@ List.prototype.compact = function(fn){
 
   return new List(result);
 };
+
+/*
+ * find
+ * Return the first value when `fn(val, i)` is truthy,
+ * otherwise return `undefined`.
+ *
+ *    users.find(function(user){
+ *      return user.role == 'admin'
+ *    })
+ *
+ * @param {Function} fn iterator
+ * @return {Mixed}
+ * @api public
+ */
+
+List.prototype.find = function(fn){
+  var items = this._items;
+  var len = items.length;
+  var i;
+  var item;
+  var test;
+  var result = [];
+
+  for (var i = 0; i < len; ++i) {
+    item = items[i];
+    test = fn(item, i);
+    if (test) {
+      return item;
+    }
+  }
+
+  return;
+};
