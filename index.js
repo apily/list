@@ -60,6 +60,21 @@ function mixin(obj) {
   return obj;
 }
 
+/*
+ * add
+ * Add an item to the list,  
+ * emit 'add' event.
+ * 
+ * @param {Mixed} item item to add
+ * @return {List} this for chaining
+ * @api public
+ */
+
+List.prototype.add = function (item) {
+  this._items.push(item);
+  this.emit('add', item);
+  return this;
+};
 
 /*
  * inspect
