@@ -77,6 +77,29 @@ List.prototype.add = function (item) {
 };
 
 /*
+ * remove
+ * Remove `item` from the list,  
+ * if the item exists, emit 'remove' event.
+ * 
+ * @param {Mixed} item item to add
+ * @return {List} this for chaining
+ * @api public
+ */
+
+List.prototype.remove = function (item) {
+  var items = this._items;
+  var index = items.indexOf(item);
+  var test = index !== -1;
+
+  if (test) {
+    items.splice(index, 1);
+    this.emit('remove', item);
+  }
+
+  return this;
+};
+
+/*
  * inspect
  * Return a string representation of this list.
  *
