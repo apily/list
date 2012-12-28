@@ -51,6 +51,15 @@ describe('List#remove(item)', function(){
   })
 })
 
+describe('List#inspect()', function(){
+  it('should return a string representation', function(){
+    var list = List(['hello', 'world']);
+    var repr = list.inspect();
+
+    assert(repr === '[List ["hello","world"]]');
+  })
+})
+
 describe('List#each(fn)', function(){
   it('should iterate each value', function(){
     var list = List([1,2,3]);
@@ -61,3 +70,4 @@ describe('List#each(fn)', function(){
     assert(n === 3);
   })
 })
+
