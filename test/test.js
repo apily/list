@@ -210,3 +210,19 @@ describe('List#none(fn)', function(){
 
   })
 })
+
+describe('.any(fn)', function(){
+  it('should return true when any are truthy', function(){
+    var list = List([1,2,3]);
+    var test = list.any(function(item){ return item < 2; });
+
+    assert(test);
+  })
+
+  it('should return false when none are truthy', function(){
+    var list = List([1,2,3]);
+    var test = list.any(function(item){ return item < 0; });
+
+    assert(test === false);
+  })
+})
