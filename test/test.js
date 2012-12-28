@@ -19,7 +19,6 @@ describe('List#add(item)', function(){
   })
 })
 
-
 describe('List#remove(item)', function(){
   it('should emit `remove` event', function(done){
     var list = List(['hello', 'world']);
@@ -130,3 +129,18 @@ describe('List#compact()', function(){
     assert(items[1] === 2);
   })
 })
+
+describe('List#find(fn)', function(){
+  it('should return the first truthy callback value', function(){
+    var list = List([1,2,3,1,2,3]);
+    var index = -1;
+
+    list.find(function(item, i){ 
+      index = i; 
+      return item === 2; 
+    });
+
+    assert(item === 2);
+    assert(index === 1);
+  });
+});
