@@ -207,7 +207,6 @@ describe('List#none(fn)', function(){
     var test = users.none(function(user) { return user.admin; });
 
     assert(test === false);
-
   })
 })
 
@@ -233,5 +232,17 @@ describe('List#count(fn)', function(){
     var n = list.count(function(item){ return item < 0; });
 
     assert(n === 2);
+  })
+})
+
+describe('.indexOf(value)', function(){
+  it('should return the index using ===', function(){
+    var enrico = { name: 'enrico', admin: false };
+    var federico = { name: 'federico', admin: false };
+    var users = List([enrico, federico]);
+    
+    assert(users.indexOf(enrico) === 0);
+    assert(users.indexOf(federico) === 1);
+    assert(users.indexOf('007') === -1);
   })
 })
