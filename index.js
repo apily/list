@@ -325,7 +325,8 @@ List.prototype.find = function(fn){
   return;
 };
 
-/**
+/*
+ * findLast
  * Return the last value when `fn(val, i)` is truthy,
  * otherwise return `undefined`.
  *
@@ -354,4 +355,41 @@ List.prototype.findLast = function(fn){
   }
 
   return;
+};
+
+/*
+ * every
+ * Assert that all invocations of `fn(val, i)` are truthy.
+ *
+ * For example ensuring that all pets are ferrets:
+ *
+ *    pets.all(function(pet){
+ *      return pet.species == 'ferret'
+ *    })
+ *
+ *    users.all('admin')
+ *
+ * @param {Function|String} fn
+ * @return {Boolean}
+ * @api public
+ */
+
+List.prototype.all =
+List.prototype.every = function(fn){
+  var items = this._items;
+  var len = items.length;
+  var i;
+  var item;
+  var test;
+  var result = [];
+
+  for (i = 0; i < len; i += 1) {
+    item = items[i];
+    test = fn(item, i);
+    if (!test) {
+      return false;
+    }
+  }
+
+  return true;
 };
