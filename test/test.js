@@ -146,3 +146,20 @@ describe('List#find(fn)', function(){
     assert(value === 2);
   });
 });
+
+describe('List#findLast(fn)', function(){
+  it('should return the last truthy callback value', function(){
+    var list = List([1,2,3,1,2,3]);
+    var index = -1;
+    var value;
+
+    list.findLast(function(item, i){ 
+      index = i; 
+      value = item;
+      return item === 2; 
+    });
+
+    assert(index === 4);
+    assert(value === 2);
+  });
+});

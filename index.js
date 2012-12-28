@@ -344,9 +344,8 @@ List.prototype.findLast = function(fn){
   var i;
   var item;
   var test;
-  var result;
 
-  for (i = len; i > 0; i -= 1) {
+  for (i = len - 1; i >= 0; i -= 1) {
     item = items[i];
     test = fn(item, i);
     if (test) {
