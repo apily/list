@@ -108,3 +108,15 @@ describe('List#unique()', function(){
   })
 })
 
+describe('List#reject(fn)', function(){
+  it('should select values of falsey return', function(){
+    var list = List([1,2,3,4,5]);
+    var result = list.reject(function(item){ return item < 3});
+    var items = result._items;
+
+    assert(items[0] === 3);
+    assert(items[1] === 4);
+    assert(items[2] === 5);
+  })
+})
+

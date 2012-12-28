@@ -314,7 +314,7 @@ List.prototype.find = function(fn){
   var test;
   var result = [];
 
-  for (var i = 0; i < len; ++i) {
+  for (i = 0; i < len; i += 1) {
     item = items[i];
     test = fn(item, i);
     if (test) {
