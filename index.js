@@ -381,7 +381,6 @@ List.prototype.every = function(fn){
   var i;
   var item;
   var test;
-  var result = [];
 
   for (i = 0; i < len; i += 1) {
     item = items[i];
@@ -413,7 +412,6 @@ List.prototype.none = function(fn){
   var i;
   var item;
   var test;
-  var result = [];
 
   for (i = 0; i < len; i += 1) {
     item = items[i];
@@ -447,7 +445,6 @@ List.prototype.any = function(fn){
   var i;
   var item;
   var test;
-  var result = [];
 
   for (i = 0; i < len; i += 1) {
     item = items[i];
@@ -458,4 +455,36 @@ List.prototype.any = function(fn){
   }
 
   return false;
+};
+
+/* 
+ * count
+ * Count the number of times `fn(val, i)` returns true.
+ *
+ *    var n = pets.count(function(pet){
+ *      return pet.species == 'ferret'
+ *    })
+ *
+ * @param {Function} fn
+ * @return {Number}
+ * @api public
+ */
+
+List.prototype.count = function(fn){
+  var items = this._items;
+  var len = items.length;
+  var i;
+  var item;
+  var test;
+  var n = 0;
+
+  for (i = 0; i < len; i += 1) {
+    item = items[i];
+    test = fn(item, i);
+    if (test) {
+      n += 1;
+    }
+  }
+
+  return n;
 };
