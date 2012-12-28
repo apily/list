@@ -71,3 +71,14 @@ describe('List#each(fn)', function(){
   })
 })
 
+describe('List#map(fn)', function(){
+  it('should map values returned by the function', function(){
+    var list = List([1,2,3]);
+    var ret = list.map(function(n){ return n * 2; });
+    var items = ret._items;
+
+    assert(items[0] === 2);
+    assert(items[1] === 4);
+    assert(items[2] === 6);
+  })
+})
