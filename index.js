@@ -33,7 +33,7 @@ Emitter(List.prototype);
 function List(items) {
   if (!(this instanceof List)) {
     if (Array.isArray(items)) {
-      return new Enumerable(list);
+      return new List(items);
     }
     return mixin(items);
   }
