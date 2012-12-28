@@ -134,13 +134,15 @@ describe('List#find(fn)', function(){
   it('should return the first truthy callback value', function(){
     var list = List([1,2,3,1,2,3]);
     var index = -1;
+    var value;
 
     list.find(function(item, i){ 
       index = i; 
+      value = item;
       return item === 2; 
     });
 
-    assert(item === 2);
     assert(index === 1);
+    assert(value === 2);
   });
 });
