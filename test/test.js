@@ -94,3 +94,17 @@ describe('List#select(fn)', function(){
     assert(items[2] === 0);
   })
 })
+
+describe('List#unique()', function(){
+  it('should select unique values', function(){
+    var list = List([1,2,3,2,1,0]);
+    var result = list.unique();
+    var items = result._items;
+
+    assert(items[0] === 1);
+    assert(items[1] === 2);
+    assert(items[2] === 3);
+    assert(items[3] === 0);
+  })
+})
+
