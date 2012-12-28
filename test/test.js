@@ -36,6 +36,19 @@ describe('List#remove(item)', function(){
 
     list.remove(value);
   })
+
+  it('should not emit `remove` event if item does not exist', function(){
+    var list = List(['hello', 'world']);
+    var value = '!';
+
+    assert(list._items.length === 2);
+
+    list.on('remove', function (item) {
+      assert(false);
+    });
+
+    list.remove(value);
+  })
 })
 
 describe('List#each(fn)', function(){
