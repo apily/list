@@ -488,3 +488,16 @@ List.prototype.count = function(fn){
 
   return n;
 };
+
+/*
+ * indexOf
+ * Determine the index of `obj` or return `-1`.
+ *
+ * @param {Mixed} obj
+ * @return {Number}
+ * @api public
+ */
+
+List.prototype.indexOf = function(obj){
+  return this._items.indexOf(obj)
+};
