@@ -246,3 +246,26 @@ describe('.indexOf(value)', function(){
     assert(users.indexOf('007') === -1);
   })
 })
+
+describe('List#has(value)', function(){
+  describe('when value is present', function(){
+    it('should return true', function(){
+      var enrico = { name: 'enrico', admin: false };
+      var federico = { name: 'federico', admin: false };
+      var users = List([enrico, federico]);
+      
+      assert(users.has(enrico));
+      assert(users.has(federico));
+    })
+  })
+
+  describe('when value is not present', function(){
+    it('should return false', function(){
+      var enrico = { name: 'enrico', admin: false };
+      var federico = { name: 'federico', admin: false };
+      var users = List([enrico, federico]);
+      
+      assert(users.has('007') === false);
+    })
+  })
+})
