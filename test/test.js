@@ -211,7 +211,7 @@ describe('List#none(fn)', function(){
   })
 })
 
-describe('.any(fn)', function(){
+describe('List#any(fn)', function(){
   it('should return true when any are truthy', function(){
     var list = List([1,2,3]);
     var test = list.any(function(item){ return item < 2; });
@@ -224,5 +224,14 @@ describe('.any(fn)', function(){
     var test = list.any(function(item){ return item < 0; });
 
     assert(test === false);
+  })
+})
+
+describe('List#count(fn)', function(){
+  it('should return the occurrances of truthy values', function(){
+    var list = List([1,-2,3,-4,5]);
+    var n = list.count(function(item){ return item < 0; });
+
+    assert(n === 2);
   })
 })
