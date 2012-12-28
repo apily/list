@@ -132,7 +132,7 @@ List.prototype.each = function(fn){
   var len = items.length;
   var i;
 
-  for (i = 0; i < len; i =+ 1) {
+  for (i = 0; i < len; i +=1) {
     fn(items[i], i);
   }
   
@@ -220,7 +220,7 @@ List.prototype.unique = function(){
   var test;
   var result = [];
 
-  for (i = 0; i < len; i =+ 1) {
+  for (i = 0; i < len; i += 1) {
     item = items[i];
     test = result.indexOf(item) === -1;
     if (test) {
@@ -252,7 +252,7 @@ List.prototype.reject = function(fn){
   var test;
   var result = [];
 
-  for (i = 0; i < len; i =+ 1) {
+  for (i = 0; i < len; i += 1) {
     item = items[i];
     test = fn(item, i);
     if (!test) {
@@ -282,7 +282,7 @@ List.prototype.compact = function(fn){
   var test;
   var result = [];
 
-  for (i = 0; i < len; i =+ 1) {
+  for (i = 0; i < len; i += 1) {
     item = items[i];
     if (item !== null && item !== undefined) {
       result.push(item);
