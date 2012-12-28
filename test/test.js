@@ -163,3 +163,28 @@ describe('List#findLast(fn)', function(){
     assert(value === 2);
   });
 });
+
+describe('List#every(fn)', function(){
+  it('should alias List#all()', function(){
+    var list = List([1,2,3]);
+    var test = list.every(function(item){ return item < 5; });
+
+    assert(test);
+  });
+});
+
+describe('List#all(fn)', function(){
+  it('should return true when all returns are truthy', function(){
+    var list = List([1,2,3]);
+    var test = list.every(function(item){ return item < 5; });
+
+    assert(test);
+  });
+
+  it('should return false when some are falsey', function(){
+    var list = List([1,2,3]);
+    var test = list.every(function(item){ return item < 2; });
+
+    assert(test === false);
+  });
+});
