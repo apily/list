@@ -89,9 +89,9 @@ List.prototype.add = function (item) {
 List.prototype.remove = function (item) {
   var items = this._items;
   var index = items.indexOf(item);
-  var test = index !== -1;
+  var present = index !== -1;
 
-  if (test) {
+  if (present) {
     items.splice(index, 1);
     this.emit('remove', item);
   }

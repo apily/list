@@ -19,6 +19,25 @@ describe('List#add(item)', function(){
   })
 })
 
+
+describe('List#remove(item)', function(){
+  it('should emit `remove` event', function(done){
+    var list = List(['hello', 'world']);
+    var value = 'hello';
+
+    assert(list._items.length === 2);
+
+    list.on('remove', function (item) {
+      assert(list._items.length === 1);
+      assert(list._items[0] === 'world');
+      assert(value === item);
+      done();
+    });
+
+    list.remove(value);
+  })
+})
+
 describe('List#each(fn)', function(){
   it('should iterate each value', function(){
     var list = List([1,2,3]);
