@@ -120,3 +120,13 @@ describe('List#reject(fn)', function(){
   })
 })
 
+describe('List#compact()', function(){
+  it('should reject null and undefined values', function(){
+    var list = List([1,null,2,undefined]);
+    var result = list.compact();
+    var items = result._items;
+
+    assert(items[0] === 1);
+    assert(items[1] === 2);
+  })
+})
