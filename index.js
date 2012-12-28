@@ -425,3 +425,37 @@ List.prototype.none = function(fn){
 
   return true;
 };
+
+/*
+ * any
+ * Assert that at least one invocation of `fn(val, i)` is truthy.
+ *
+ * For example checking to see if any pets are ferrets:
+ *
+ *    pets.any(function(pet){
+ *      return pet.species == 'ferret'
+ *    })
+ *
+ * @param {Function} fn
+ * @return {Boolean}
+ * @api public
+ */
+
+List.prototype.any = function(fn){
+  var items = this._items;
+  var len = items.length;
+  var i;
+  var item;
+  var test;
+  var result = [];
+
+  for (i = 0; i < len; i += 1) {
+    item = items[i];
+    test = fn(item, i);
+    if (test) {
+      return true;
+    }
+  }
+
+  return false;
+};
