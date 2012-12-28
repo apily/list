@@ -188,3 +188,25 @@ describe('List#all(fn)', function(){
     assert(test === false);
   });
 });
+
+describe('List#none(fn)', function(){
+  it('should return true when fn() is always false', function(){
+    var enrico = { name: 'enrico', admin: false };
+    var federico = { name: 'federico', admin: false };
+    var users = List([enrico, federico]);
+    var test = users.none(function(user) { return user.admin; });
+
+    assert(test);
+  })
+
+  it('should return false when fn() is not always false', function(){
+    var enrico = { name: 'enrico', admin: false };
+    var federico = { name: 'federico', admin: false };
+    var ciccio = { name: 'ciccio', admin: true };
+    var users = List([enrico, federico, ciccio]);
+    var test = users.none(function(user) { return user.admin; });
+
+    assert(test === false);
+
+  })
+})
