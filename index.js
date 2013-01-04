@@ -50,7 +50,7 @@ function List(items) {
  */
 
 function mixin(obj) {
-  var proto = Attribute.prototype;
+  var proto = List.prototype;
   var key;
 
   for (key in proto) {
