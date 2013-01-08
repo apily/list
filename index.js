@@ -4,7 +4,7 @@
  *
  * @copyright 2012 Enrico Marino and Federico Spini
  * @license MIT
- */ 
+ */
 
 /*
  * Module dependencies.
@@ -25,24 +25,26 @@ module.exports = List;
 Emitter(List.prototype);
 
 /*
- * Initialize a new `Attribute`.
+ * Initialize a new `List`.
  *
  * @api public
  */
 
-function List(items) {
+function List(obj) {
+  obj = obj || [];
+
   if (!(this instanceof List)) {
-    if (Array.isArray(items)) {
-      return new List(items);
+    if (Array.isArray(obj)) {
+      return new List(obj);
     }
-    return mixin(items);
+    return mixin(obj);
   }
 
-  this._items = items;
+  this._items = obj;
 }
 
 /*
- * Mixin the Attribute properties.
+ * Mixin the List properties.
  *
  * @param {Object} obj
  * @return {Object}
@@ -62,15 +64,16 @@ function mixin(obj) {
 
 /*
  * add
- * Add an item to the list,  
+ * Add an item to the list,
  * emit 'add' event.
- * 
+ *
  * @param {Mixed} item item to add
  * @return {List} this for chaining
  * @api public
  */
 
 List.prototype.add = function (item) {
+  this._items = this._items || [];
   this._items.push(item);
   this.emit('add', item);
   return this;
@@ -78,15 +81,16 @@ List.prototype.add = function (item) {
 
 /*
  * remove
- * Remove `item` from the list,  
+ * Remove `item` from the list,
  * if the item exists, emit 'remove' event.
- * 
+ *
  * @param {Mixed} item item to add
  * @return {List} this for chaining
  * @api public
  */
 
 List.prototype.remove = function (item) {
+  this._items = this._items || [];
   var items = this._items;
   var index = items.indexOf(item);
   var present = index !== -1;
@@ -110,7 +114,8 @@ List.prototype.remove = function (item) {
  */
 
 List.prototype.inspect =
-List.prototype.toString = function(){
+List.prototype.toString = function() {
+  this._items = this._items || [];
   return '[List ' + JSON.stringify(this._items) + ']';
 };
 
@@ -127,7 +132,8 @@ List.prototype.toString = function(){
  * @api public
  */
 
-List.prototype.each = function(fn){
+List.prototype.each = function(fn) {
+  this._items = this._items || [];
   var items = this._items;
   var len = items.length;
   var i;
@@ -135,7 +141,7 @@ List.prototype.each = function(fn){
   for (i = 0; i < len; i +=1) {
     fn(items[i], i);
   }
-  
+
   return this;
 };
 
@@ -152,7 +158,8 @@ List.prototype.each = function(fn){
  * @api public
  */
 
-List.prototype.map = function(fn){
+List.prototype.map = function(fn) {
+  this._items = this._items || [];
   var items = this._items;
   var len = items.length;
   var i;
@@ -182,8 +189,9 @@ List.prototype.map = function(fn){
  * @api public
  */
 
-List.prototype.select = 
-List.prototype.where = function(fn){
+List.prototype.select =
+List.prototype.where = function(fn) {
+  this._items = this._items || [];
   var items = this._items;
   var len = items.length;
   var i;
@@ -212,7 +220,8 @@ List.prototype.where = function(fn){
  * @api public
  */
 
-List.prototype.unique = function(){
+List.prototype.unique = function() {
+  this._items = this._items || [];
   var items = this._items;
   var len = items.length;
   var i;
@@ -244,7 +253,8 @@ List.prototype.unique = function(){
  * @api public
  */
 
-List.prototype.reject = function(fn){
+List.prototype.reject = function(fn) {
+  this._items = this._items || [];
   var items = this._items;
   var len = items.length;
   var i;
@@ -274,7 +284,8 @@ List.prototype.reject = function(fn){
  * @api public
  */
 
-List.prototype.compact = function(fn){
+List.prototype.compact = function(fn) {
+  this._items = this._items || [];
   var items = this._items;
   var len = items.length;
   var i;
@@ -306,7 +317,8 @@ List.prototype.compact = function(fn){
  * @api public
  */
 
-List.prototype.find = function(fn){
+List.prototype.find = function(fn) {
+  this._items = this._items || [];
   var items = this._items;
   var len = items.length;
   var i;
@@ -339,7 +351,8 @@ List.prototype.find = function(fn){
  * @api public
  */
 
-List.prototype.findLast = function(fn){
+List.prototype.findLast = function(fn) {
+  this._items = this._items || [];
   var items = this._items;
   var len = items.length;
   var i;
@@ -375,7 +388,8 @@ List.prototype.findLast = function(fn){
  */
 
 List.prototype.all =
-List.prototype.every = function(fn){
+List.prototype.every = function(fn) {
+  this._items = this._items || [];
   var items = this._items;
   var len = items.length;
   var i;
@@ -406,7 +420,8 @@ List.prototype.every = function(fn){
  * @api public
  */
 
-List.prototype.none = function(fn){
+List.prototype.none = function(fn) {
+  this._items = this._items || [];
   var items = this._items;
   var len = items.length;
   var i;
@@ -439,7 +454,8 @@ List.prototype.none = function(fn){
  * @api public
  */
 
-List.prototype.any = function(fn){
+List.prototype.any = function(fn) {
+  this._items = this._items || [];
   var items = this._items;
   var len = items.length;
   var i;
@@ -457,7 +473,7 @@ List.prototype.any = function(fn){
   return false;
 };
 
-/* 
+/*
  * count
  * Count the number of times `fn(val, i)` returns true.
  *
@@ -470,7 +486,8 @@ List.prototype.any = function(fn){
  * @api public
  */
 
-List.prototype.count = function(fn){
+List.prototype.count = function(fn) {
+  this._items = this._items || [];
   var items = this._items;
   var len = items.length;
   var i;
@@ -498,8 +515,9 @@ List.prototype.count = function(fn){
  * @api public
  */
 
-List.prototype.indexOf = function(obj){
-  return this._items.indexOf(obj)
+List.prototype.indexOf = function(obj) {
+  this._items = this._items || [];
+  return this._items.indexOf(obj);
 };
 
 
@@ -513,7 +531,8 @@ List.prototype.indexOf = function(obj){
  */
 
 List.prototype.has =
-List.prototype.contains = function(obj){
+List.prototype.contains = function(obj) {
+  this._items = this._items || [];
   var items = this._items;
   var len = items.length;
   var i;

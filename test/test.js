@@ -36,7 +36,7 @@ describe('List#remove(item)', function(){
     list.remove(value);
   })
 
-  it('should not emit `remove` event if item does not exist', function(){
+  it('should not emit `remove` event if item does not exist', function(done){
     var list = List(['hello', 'world']);
     var value = '!';
 
@@ -45,6 +45,10 @@ describe('List#remove(item)', function(){
     list.on('remove', function (item) {
       assert(false);
     });
+
+    setTimeout(function() {
+      done();
+    }, 60);
 
     list.remove(value);
   })
@@ -136,10 +140,10 @@ describe('List#find(fn)', function(){
     var index = -1;
     var value;
 
-    list.find(function(item, i){ 
-      index = i; 
+    list.find(function(item, i){
+      index = i;
       value = item;
-      return item === 2; 
+      return item === 2;
     });
 
     assert(index === 1);
@@ -153,10 +157,10 @@ describe('List#findLast(fn)', function(){
     var index = -1;
     var value;
 
-    list.findLast(function(item, i){ 
-      index = i; 
+    list.findLast(function(item, i){
+      index = i;
       value = item;
-      return item === 2; 
+      return item === 2;
     });
 
     assert(index === 4);
@@ -240,7 +244,7 @@ describe('.indexOf(value)', function(){
     var enrico = { name: 'enrico', admin: false };
     var federico = { name: 'federico', admin: false };
     var users = List([enrico, federico]);
-    
+
     assert(users.indexOf(enrico) === 0);
     assert(users.indexOf(federico) === 1);
     assert(users.indexOf('007') === -1);
@@ -253,7 +257,7 @@ describe('List#has(value)', function(){
       var enrico = { name: 'enrico', admin: false };
       var federico = { name: 'federico', admin: false };
       var users = List([enrico, federico]);
-      
+
       assert(users.has(enrico));
       assert(users.has(federico));
     })
@@ -264,7 +268,7 @@ describe('List#has(value)', function(){
       var enrico = { name: 'enrico', admin: false };
       var federico = { name: 'federico', admin: false };
       var users = List([enrico, federico]);
-      
+
       assert(users.has('007') === false);
     })
   })
