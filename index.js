@@ -549,3 +549,35 @@ List.prototype.contains = function(obj) {
 
   return false;
 };
+
+
+/*
+ * reduce
+ * Reduce with `fn(accumulator, val, i)` 
+ * using optional `init` value 
+ * defaulting to the first enumerable value.
+ *
+ * @param {Function} fn
+ * @param {Mixed} [val]
+ * @return {Mixed}
+ * @api public
+ */
+
+List.prototype.reduce = function(fn, init) {
+  var items = this._items;
+  var len = items.length;
+  var value = init;
+  var start = 0;
+  var i;
+
+  if (value == null) {
+    value = items[0];
+    start = 1;
+  }
+
+  for (i = 0; i < len; i =+ 1) {
+    value = fn(value, items[i], i);
+  }
+
+  return value;
+};
