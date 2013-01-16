@@ -239,7 +239,7 @@ describe('List#count(fn)', function(){
   })
 })
 
-describe('.indexOf(value)', function(){
+describe('List#indexOf(value)', function(){
   it('should return the index using ===', function(){
     var enrico = { name: 'enrico', admin: false };
     var federico = { name: 'federico', admin: false };
@@ -270,6 +270,24 @@ describe('List#has(value)', function(){
       var users = List([enrico, federico]);
 
       assert(users.has('007') === false);
+    })
+  })
+})
+
+describe('List#reduce(fn)', function(){
+  describe('List#reduce(fn)', function(){
+    it('should use the first value as the accumulator', function(){
+      var list = List([1,2,3,4,5]);
+      var result = list.reduce(function(sum, n){ return sum + n; });
+      assert(result === 15);
+    })
+  })
+
+  describe('List#reduce(fn, init)', function(){
+    it('should use the accumulator', function(){
+      var list = List([1,2,3,4,5]);
+      var result = list.reduce(function(sum, n){ return sum + n; }, 5);
+      assert(result === 20);
     })
   })
 })
