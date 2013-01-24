@@ -7,62 +7,6 @@
  */
 
 /*
- * Module dependencies.
- */
-
-var Emitter = require('emitter');
-
-/*
- * Expose `List`.
- */
-
-module.exports = List;
-
-/*
- * Mixin emitter.
- */
-
-Emitter(List.prototype);
-
-/*
- * Initialize a new `List`.
- *
- * @api public
- */
-
-function List(obj) {
-  obj = obj || [];
-
-  if (!(this instanceof List)) {
-    if (Array.isArray(obj)) {
-      return new List(obj);
-    }
-    return mixin(obj);
-  }
-
-  this._items = obj;
-}
-
-/*
- * Mixin the List properties.
- *
- * @param {Object} obj
- * @return {Object}
- * @api private
- */
-
-function mixin(obj) {
-  var proto = List.prototype;
-  var key;
-
-  for (key in proto) {
-    obj[key] = proto[key];
-  }
-
-  return obj;
-}
-
-/*
  * add
  * Add an item to the list,
  * emit 'add' event.
@@ -72,11 +16,9 @@ function mixin(obj) {
  * @api public
  */
 
-List.prototype.add = function (item) {
-  this._items = this._items || [];
-  this._items.push(item);
-  this.emit('add', item);
-  return this;
+exports.add = function (list, item) {
+  list.push(item);
+  return list;
 };
 
 /*
@@ -89,18 +31,15 @@ List.prototype.add = function (item) {
  * @api public
  */
 
-List.prototype.remove = function (item) {
-  this._items = this._items || [];
-  var items = this._items;
-  var index = items.indexOf(item);
+exports.remove = function (list, item) {
+  var index = list.indexOf(item);
   var present = index !== -1;
 
   if (present) {
-    items.splice(index, 1);
-    this.emit('remove', item);
+    list.splice(index, 1);
   }
 
-  return this;
+  return list;
 };
 
 /*
@@ -113,10 +52,8 @@ List.prototype.remove = function (item) {
  * @api public
  */
 
-List.prototype.inspect =
-List.prototype.toString = function() {
-  this._items = this._items || [];
-  return '[List ' + JSON.stringify(this._items) + ']';
+exports.inspect = function(list) {
+  return '[List ' + JSON.stringify(list) + ']';
 };
 
 /*
@@ -128,21 +65,14 @@ List.prototype.toString = function() {
  *    })
  *
  * @param {Function} fn iterator
+ * @param {Object} ctx context
  * @return {List} this for chaining
  * @api public
  */
 
-List.prototype.each = function(fn) {
-  this._items = this._items || [];
-  var items = this._items;
-  var len = items.length;
-  var i;
-
-  for (i = 0; i < len; i +=1) {
-    fn(items[i], i);
-  }
-
-  return this;
+exports.each = function(fn, ctx) {
+  list.forEach(fn, ctx);
+  return list;
 };
 
 /*
